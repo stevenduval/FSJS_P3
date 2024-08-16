@@ -20,7 +20,7 @@ Clone the project - (https://github.com/stevenduval/FSJS_P3) -  and open up the 
 
 ## Authors
 
-* **Steven Duval** - *jQuery code*
+* **Steven Duval** - *JavaScript code*
 * **TreeHouse** - *HTML & CSS code* - (https://teamtreehouse.com)
 
 ## License
