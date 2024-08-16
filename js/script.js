@@ -115,7 +115,8 @@ const formValidation = (event) => {
         checkFieldValidation(ccCVV, /^\b\d{3}\b/);
     }
     // stop form submission if any errors are present
-    if (document.querySelectorAll('.not-valid').length > 0 ) { 
+    let notValidAndVisible = [...document.querySelectorAll('.not-valid')].filter(el => el.getBoundingClientRect().height > 0);
+    if (notValidAndVisible.length > 0 ) { 
         event.preventDefault(); 
     }
 };
