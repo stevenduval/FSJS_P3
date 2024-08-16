@@ -90,15 +90,6 @@ const setValidOrNotValid = (error, elem) => {
     elem.parentNode.classList.add(`${((!error) ? 'not-valid' : 'valid')}`);
 };
 
-const checkLength = (elem, min, max, charType) => {
-    let msg;
-    let length = elem.value.length;
-    if(length < min ) { msg = `The value entered is less than ${min} ${charType} long.`; }
-    if(length > max ) { msg = `The value entered is more than ${max} ${charType} long.`; }
-    document.querySelector(`#${elem.id} ~ .hint`).textContent = msg;
-    setValidOrNotValid(((length < min || length > max) ? false : true) , elem);
-}
-
 const checkFieldValidation = (elem, regex) => {
     // test regular expression against value of elem
     let isValid = new RegExp(regex).test(elem.value);
@@ -106,7 +97,7 @@ const checkFieldValidation = (elem, regex) => {
     setValidOrNotValid(isValid, elem);
     // return the validation value
     return isValid;
-}
+};
 
 const formValidation = (event) => {
     const getSelectedActivityCount = document.querySelectorAll('#activities-box input:checked').length;
@@ -127,6 +118,26 @@ const formValidation = (event) => {
     if (document.querySelectorAll('.not-valid').length > 0 ) { 
         event.preventDefault(); 
     }
+};
+
+const checkLength = (elem, min, max, charType) => {
+    let msg;
+    let length = elem.value.length;
+    let isValid = checkFieldValidation(ccNum, /^\b\d{13,16}\b/);
+    // if less than 13 digits and not a number
+    if( length < min && !isValid ) { 
+        msg = `The value entered is less than ${min} ${charType} long.`; 
+    // if more than 16 digits and not a number
+    } else if ( length > max & !isValid ) {
+        msg = `The value entered is more than ${max} ${charType} long.`; 
+    // else is correct length but not a number
+    } else if (!isValid) {
+        msg = 'Credit card number must only contain 13-16 digits.'
+    }
+    // set hint value
+    document.querySelector(`#${elem.id} ~ .hint`).textContent = msg;
+    // set appropriate classes if valid or not
+    setValidOrNotValid(isValid, elem);
 };
 
 

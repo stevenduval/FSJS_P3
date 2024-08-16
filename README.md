@@ -11,7 +11,8 @@ The code within this project adds form validation and interactive functionality 
 - When an activity is selected and there is another activity that conflicts, the conflicting activity will become disabled
 - When typing into the credit card field:
     - If less than 13 digits, a message will appear stating you need at least 13 digits.
-    - If more than 16 digits, a message will appear stating the input is more than 16 digits long.  
+    - If more than 16 digits, a message will appear stating the input is more than 16 digits long.
+    - If appropriate length but not digits, message will state card number needs to be 13-16 digits long.
     - When there are no errors while typing the valid class is applied.
 
 ## Deployment
